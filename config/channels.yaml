@@ -1,38 +1,5 @@
-motivation:
-  name: "Daily Discipline"
-  niche: "motivation"
-  audience: "young professionals"
-  angle: "discipline and habits"
-  tone: "energetic"
-  voice: "en-US-GuyNeural"
-  visual_style: "cinematic"
-  platforms: ["youtube"]
-  posts_per_day: 2
-
-money:
-  name: "Money Mechanics"
-  niche: "finance"
-  audience: "young adults"
-  angle: "personal finance"
-  tone: "practical"
-  voice: "en-US-GuyNeural"
-  visual_style: "clean and modern"
-  platforms: ["youtube"]
-  posts_per_day: 1
-
-facts:
-  name: "Mind Blown Facts"
-  niche: "psychology"
-  audience: "curious people"
-  angle: "interesting facts"
-  tone: "engaging"
-  voice: "en-US-GuyNeural"
-  visual_style: "colorful"
-  platforms: ["youtube"]
-  posts_per_day: 1
-
 baby_music:
-  name: "Детская музыка"
+  name: "Baby Music Dance"
   niche: "kids songs, nursery rhymes, learning colors and animals"
   audience: "toddlers and their parents"
   angle: "fun, educational, calm and colorful"
