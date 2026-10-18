@@ -35,28 +35,17 @@ def write_script(cfg: dict, idea: dict) -> dict:
         disclaimer_line=disclaimer_line,
     )
 
-    script = extract_json(complete(prompt, cfg, max_tokens=1500))
-    if not script.get("full_script"):
-        raise RuntimeError("Scriptwriter returned no full_script.")
+    # Пытаемся получить сценарий. Если модель вернула пустоту — повторяем.
+    for attempt in range(2):
+        try:
+            script = extract_json(complete(prompt, cfg, max_tokens=2000))
+            if script.get("full_script"):
+                wc = len(script["full_script"].split())
+                log(f"script: hook + {len(script.get('beats', []))} beats, {wc} words", "ok")
+                return script
+        except ValueError as e:
+            log(f"script attempt {attempt + 1} failed: {e}", "warn")
+        if attempt == 0:
+            log("retrying script generation...", "warn")
 
-    # Small free models tend to under-write. Expand the draft toward the budget
-    # (models hit a target far better when expanding existing text than writing cold).
-    min_words = int(word_budget * 0.85)
-    for _ in range(2):
-        wc = len(script["full_script"].split())
-        if wc >= min_words:
-            break
-        log(f"script short ({wc}w) — expanding toward {word_budget}w", "warn")
-        expand = (
-            f"This voiceover script is too short at {wc} words. Rewrite it to be "
-            f"{word_budget}-{word_budget_max} words by deepening each beat with concrete, "
-            f"vivid detail and complete spoken sentences. Keep the hook and the punchy tone. "
-            f"Return the SAME JSON shape.\n\nCurrent script JSON:\n{json.dumps(script)}"
-        )
-        expanded = extract_json(complete(expand, cfg, max_tokens=1500))
-        if expanded.get("full_script"):
-            script = expanded
-
-    wc = len(script["full_script"].split())
-    log(f"script: hook + {len(script.get('beats', []))} beats, {wc} words", "ok")
-    return script
+    raise RuntimeError("Scriptwriter failed to return a valid JSON script after 2 attempts.")
