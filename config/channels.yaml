@@ -1,10 +1,11 @@
-baby_music:
-  name: "Baby Music Dance"
-  niche: "kids songs, nursery rhymes, learning colors and animals"
-  audience: "toddlers and their parents"
-  angle: "fun, educational, calm and colorful"
-  tone: "cheerful and gentle"
-  voice: "ru-RU-SvetlanaNeural"
-  visual_style: "cartoon animals, bright colors, soft edges"
-  platforms: ["youtube"]
-  posts_per_day: 1
+channels:
+  baby_music:
+    name: "Baby Music Dance"
+    niche: "kids songs, nursery rhymes, learning colors and animals"
+    audience: "toddlers and their parents"
+    angle: "fun, educational, calm and colorful"
+    tone: "cheerful and gentle"
+    voice: "ru-RU-SvetlanaNeural"
+    visual_style: "cartoon animals, bright colors, soft edges"
+    platforms: ["youtube"]
+    posts_per_day: 1
