@@ -37,11 +37,9 @@ def extract_json(text: str) -> dict:
     """Pull the first JSON object out of an LLM response. Handles fences and bad commas."""
     text = text.strip()
 
-    # Убираем markdown-обёртку ```json ... ```
     if text.startswith("```"):
         text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
 
-    # Ищем первую { и последнюю }
     start = text.find("{")
     end = text.rfind("}")
     if start == -1 or end == -1:
@@ -49,17 +47,12 @@ def extract_json(text: str) -> dict:
 
     raw = text[start : end + 1]
 
-    # Пытаемся распарсить как есть
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
         pass
 
-    # Чиним типичные ошибки: лишние запятые перед } или ]
     fixed = re.sub(r",\s*([}\]])", r"\1", raw)
-
-    # Чиним одиночные кавычки (если модель использовала их вместо двойных)
-    # Осторожно: только для простых случаев, чтобы не сломать текст
     fixed = fixed.replace("'", '"')
 
     try:
