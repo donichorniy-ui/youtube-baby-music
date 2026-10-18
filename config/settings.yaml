@@ -1,7 +1,7 @@
 # Global pipeline behavior — one video at a time, 9:16, optimized for Shorts/Reels.
 llm:
-  provider: groq
-  model: openai/gpt-oss-20b   # Единственная стабильная бесплатная модель для JSON
+  provider: openrouter
+  model: qwen/qwen3-coder:free   # Специализированная бесплатная модель для кода и JSON
   temperature: 0.7
 
 tts:
