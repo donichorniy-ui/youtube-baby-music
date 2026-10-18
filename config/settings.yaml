@@ -1,18 +1,18 @@
 # Global pipeline behavior — one video at a time, 9:16, optimized for Shorts/Reels.
 llm:
   provider: groq
-  model: llama-3.3-70b-versatile   # заменено на надёжную модель
+  model: openai/gpt-oss-120b   # Актуальная модель, заменившая llama-3.3
   temperature: 0.9
 
 tts:
   provider: edge
-  edge_voice: en-US-AriaNeural  # будет переопределено голосом канала
+  edge_voice: en-US-AriaNeural
   edge_rate: "+8%"
   edge_pitch: "+2Hz"
   speed: 1.05
 
 visuals:
-  provider: pixabay       # заменено с pexels
+  provider: pixabay
   clips_per_video: 5
   ai_image_style: ""
 
