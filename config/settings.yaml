@@ -1,7 +1,7 @@
 # Global pipeline behavior — one video at a time, 9:16, optimized for Shorts/Reels.
 llm:
   provider: groq
-  model: openai/gpt-oss-120b
+  model: llama-3.3-70b-versatile   # заменено на надёжную модель
   temperature: 0.9
 
 tts:
